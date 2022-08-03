@@ -18,7 +18,12 @@ if(isset($_POST['book_name'])){
 
     $db->query("INSERT INTO books(book_name,book_author,book_price) VALUES('". $book_name . "' , '". $book_author ."' , ". $book_price ." )");
 
+}else if(isset($_POST['book_id']))
+{
+    $book_id= $_POST['book_id'];
+    $db->query("DELETE FROM books WHERE book_id = $book_id");
 }
+
 
 
 
@@ -99,7 +104,11 @@ while($a = mysqli_fetch_assoc($result))
 
 <br><br>
 <table border="1">
+
+<br><br><br>
+<!-- Form for Insertion record  -->
 <form action="" method="POST">
+<h3>Insert the Data </h3>
     <tr>
         <td>
             <label for="book_name">Enter Book Name:</label>
@@ -119,9 +128,65 @@ while($a = mysqli_fetch_assoc($result))
         <td>
             <input type="number" name="book_price">
         </td>   
+        <td>
+            <input type="submit" value="Insert Record">
+        </td>
+    </tr>
+</form>
+</table>
+
+
+
+<br><br><br>
+<!-- Form for Deletion  -->
+<table border="1">
+<form action=" " method="POST">
+<h3>Delete the Data</h3>
+    <tr>
+        <td>
+        <label for="book_id">Delete the Record with Book ID:</label>
+        </td>
+        <td>
+        <input type="number" name="book_id">        
+        </td>
+        <td>
+        <input type="submit" value= "Delete Record">
+        </td>
+    </tr>
+</form>
+</table>
+
+
+<br><br><br>
+
+<!-- Form for updation  -->
+<form action=" " method="POST">
+    <h3>Update the Record</h3>
+<tr>
+        <td>
+            <label for="book_name">Update Book Name:</label>
+        </td>
+        <td>
+            <input type="text" name="book_name">
+        </td>  
+        <td>
+            <label for="book_name">Update Book Author:</label>
+        </td>
+        <td>
+            <input type="text" name="book_author">
+        </td>
+        <td>
+            <label for="book_name">Update Book Price:</label>
+        </td>
+        <td>
+            <input type="number" name="book_price">
+        </td>   
     </tr>
 
     
-    <input type="submit" value="Save">
+    <input type="submit" value="Update ">
+    
 </form>
+
+
 </table>
