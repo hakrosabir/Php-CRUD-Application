@@ -9,6 +9,22 @@ if($db)
     echo"Error in MYSQl Connection.";
 }
 
+// data insertion into database code
+if(isset($_POST['book_name'])){
+   
+    $book_name =   $_POST['book_name'];
+    $book_author =   $_POST['book_author'];
+    $book_price =   $_POST['book_price'];
+
+    $db->query("INSERT INTO books(book_name,book_author,book_price) VALUES('". $book_name . "' , '". $book_author ."' , ". $book_price ." )");
+
+}
+
+
+
+
+
+
 $result = $db-> query("SELECT * FROM books");
 //print_r($result);
 // Fetching one by one record from the table city in world database
@@ -86,12 +102,6 @@ while($a = mysqli_fetch_assoc($result))
 <form action="" method="POST">
     <tr>
         <td>
-            <label for="book_id">Enter Book ID:</label>
-        </td>
-        <td>
-            <input type="number" name="book_id">
-        </td>
-        <td>
             <label for="book_name">Enter Book Name:</label>
         </td>
         <td>
@@ -108,12 +118,10 @@ while($a = mysqli_fetch_assoc($result))
         </td>
         <td>
             <input type="number" name="book_price">
-        </td>
-        <td>
-        <input type="submit" value="Save">
-        </td>
-        
+        </td>   
     </tr>
+
     
+    <input type="submit" value="Save">
 </form>
 </table>
